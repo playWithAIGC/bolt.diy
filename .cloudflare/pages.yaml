@@ -15,6 +15,23 @@ build:
       }
     }' > package.json &&
     npm install &&
+    echo '{
+      "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "allowJs": true,
+        "esModuleInterop": true
+      }
+    }' > tsconfig.json &&
+    echo 'export default {
+      external: ["@remix-run/cloudflare-pages", "@remix-run/cloudflare"],
+      build: {
+        rollupOptions: {
+          input: "[[path]].ts"
+        }
+      }
+    }' > vite.config.js &&
     echo 'import { createPagesFunctionHandler } from "@remix-run/cloudflare-pages";
     import * as build from "../build/server/index.js";
     export const onRequest = createPagesFunctionHandler({ build });' > [[path]].ts
