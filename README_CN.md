@@ -1,47 +1,6 @@
-# Bolt.DIY 部署指南
 
-本文档介绍如何通过 GitHub Actions 将项目部署到 Cloudflare Pages。
 
-## 前置要求
 
-- GitHub 账号
-- Cloudflare 账号
-- 项目代码已推送到 GitHub 仓库
-
-## 部署步骤
-
-### 1. 配置 Cloudflare
-
-1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)
-2. 记录你的 Account ID
-   - 可以在 URL 中找到：`https://dash.cloudflare.com/{account-id}`
-   - 或在右侧边栏查看
-
-3. 创建 API Token
-   - 访问 [API Tokens 页面](https://dash.cloudflare.com/profile/api-tokens)
-   - 点击 "Create Token"
-   - 选择 "Create Custom Token"
-   - 设置以下权限：
-     ```
-     Account.Cloudflare Pages: Edit
-     User.Workers Scripts: Edit
-     ```
-   - 创建并保存生成的 Token
-
-### 2. 配置 GitHub Secrets
-
-1. 在你的 GitHub 仓库中，进入 Settings > Secrets and variables > Actions
-2. 添加以下 secrets：
-   - `CLOUDFLARE_API_TOKEN`: 你创建的 API Token
-   - `CLOUDFLARE_ACCOUNT_ID`: 你的 Cloudflare Account ID
-
-### 3. 配置 GitHub Actions
-
-项目已包含 GitHub Actions 配置文件：`.github/workflows/cloudflare-pages.yaml`
-
-我来帮你创建部署文档：
-
-```markdown:README_CN.md
 # Bolt.DIY 部署指南
 
 本文档介绍如何通过 GitHub Actions 将项目部署到 Cloudflare Pages。
@@ -166,3 +125,4 @@ jobs:
 - [项目 GitHub 仓库](https://github.com/playWithAIGC/bolt.diy)
 
 
+https://github.com/playWithAIGC/bolt.diy
