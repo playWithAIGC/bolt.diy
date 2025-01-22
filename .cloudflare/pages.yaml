@@ -7,10 +7,17 @@ build:
     mkdir -p build/functions &&
     cp -r functions/* build/functions/ &&
     cd build/functions &&
-    npm init -y &&
-    npm install @remix-run/cloudflare-pages @remix-run/cloudflare &&
-    echo '{ "type": "module", "dependencies": { "@remix-run/cloudflare-pages": "^2.15.0", "@remix-run/cloudflare": "^2.15.0" } }' > package.json &&
-    echo 'export { createPagesFunctionHandler } from "@remix-run/cloudflare-pages"' > _worker.js
+    echo '{
+      "type": "module",
+      "dependencies": {
+        "@remix-run/cloudflare": "^2.15.0",
+        "@remix-run/cloudflare-pages": "^2.15.0"
+      }
+    }' > package.json &&
+    npm install &&
+    echo 'import { createPagesFunctionHandler } from "@remix-run/cloudflare-pages";
+    import * as build from "../build/server/index.js";
+    export const onRequest = createPagesFunctionHandler({ build });' > [[path]].ts
   buildOutputDirectory: build/client
   nodeVersion: 20.18.0
 
